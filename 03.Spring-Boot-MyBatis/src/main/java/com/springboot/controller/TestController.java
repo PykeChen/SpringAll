@@ -18,4 +18,9 @@ public class TestController {
 	public Student queryStudentBySno(String sno) {
 		return this.studentService.queryStudentBySno(sno);
 	}
+
+	@RequestMapping(value = "/cpy", method = RequestMethod.GET)
+	public String query() {
+		return "Hello !! cpy";
+	}
 }
