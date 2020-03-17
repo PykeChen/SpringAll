@@ -19,7 +19,7 @@ public class SysLogDaoImp implements SysLogDao {
 	public void saveSysLog(SysLog syslog) {
 		StringBuffer sql = new StringBuffer("insert into sys_log ");
 		sql.append("(id,username,operation,time,method,params,ip,create_time) ");
-		sql.append("values(seq_sys_log.nextval,:username,:operation,:time,:method,");
+		sql.append("values(id,:username,:operation,:time,:method,");
 		sql.append(":params,:ip,:createTime)");
 
 		NamedParameterJdbcTemplate npjt = new NamedParameterJdbcTemplate(this.jdbcTemplate.getDataSource());
