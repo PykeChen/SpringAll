@@ -1,10 +1,10 @@
 table {
-	margin: 20px 40px 20px 0px;
+	margin: 40px 40px 120px 40px;
 	width: 100%;
 	border-collapse: collapse;
-	border-spacing: 0;
-	table-layout: automatic;
-	word-wrap: break-all
+	border-spacing: 40px;
+	table-layout: auto;
+	word-wrap: break-word;
 }
 table>tbody>tr:nth-of-type(odd) {
 	background-color: #F7F7F7
