@@ -5,7 +5,9 @@ import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -14,6 +16,9 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.time.Duration;
+
 
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
@@ -37,11 +42,12 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 	// 缓存管理器
 	@Bean
-	public CacheManager cacheManager(@SuppressWarnings("rawtypes") RedisTemplate redisTemplate) {
-		RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
-		// 设置缓存过期时间
-		cacheManager.setDefaultExpiration(10000);
-		return cacheManager;
+	public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
+		RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+				.entryTtl(Duration.ofHours(1)); // 设置缓存有效期一小时
+		return RedisCacheManager
+				.builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
+				.cacheDefaults(redisCacheConfiguration).build();
 	}
 
 	@Bean
@@ -50,6 +56,13 @@ public class RedisConfig extends CachingConfigurerSupport {
 		setSerializer(template);// 设置序列化工具
 		template.afterPropertiesSet();
 		return template;
+//
+//		RedisTemplate<Object, Object> template = new RedisTemplate<>();
+//		template.setConnectionFactory(factory);
+//		template.setKeySerializer(new StringRedisSerializer());
+//		template.setValueSerializer(new GenericFastJsonRedisSerializer());
+//		template.afterPropertiesSet();
+//		return template;
 	}
 
 	private void setSerializer(StringRedisTemplate template) {

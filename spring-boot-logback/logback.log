@@ -323,3 +323,4 @@
 14:39:34.734 logback [http-nio-8080-exec-10] INFO  c.s.s.controller.LearnController - 日志输出 info
 14:39:34.735 logback [http-nio-8080-exec-10] WARN  c.s.s.controller.LearnController - 日志输出 warn
 14:39:34.735 logback [http-nio-8080-exec-10] ERROR c.s.s.controller.LearnController - 日志输出 error
+14:45:10.430 logback [SpringContextShutdownHook] INFO  o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
