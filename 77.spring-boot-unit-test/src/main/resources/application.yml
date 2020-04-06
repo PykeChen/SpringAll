@@ -71,14 +71,14 @@ spring:
         #　IP黑名单（共同存在时，deny优先于allow）
         # deny: 192.168.1.218
 
-#mybatis:
-#  config-location: classpath:config/mybatis-config.xml
-#  # type-aliases扫描路径
-#  type-aliases-package: demo.springboot.test.domain
-#  # mapper xml实现扫描路径
-#  mapper-locations: classpath:mapper/*.xml
-#  property:
-#    order: BEFORE
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  # type-aliases扫描路径
+  type-aliases-package: demo.springboot.test.domain
+  # mapper xml实现扫描路径
+  mapper-locations: classpath:mapper/*.xml
+  property:
+    order: BEFORE
 
 
 #mappers 多个接口时逗号隔开

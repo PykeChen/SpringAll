@@ -14,16 +14,16 @@ public abstract class BaseService<T> implements IService<T> {
 
     @Autowired
     protected Mapper<T> mapper;
-//    @Autowired
-//    protected SeqenceMapper seqenceMapper;
+    @Autowired
+    protected SeqenceMapper seqenceMapper;
     
     public Mapper<T> getMapper() {
         return mapper;
     }
-//    @Override
-//    public Long getSequence(@Param("seqName") String seqName){
-//    	return seqenceMapper.getSequence(seqName);
-//    }
+    @Override
+    public Long getSequence(@Param("seqName") String seqName){
+    	return seqenceMapper.getSequence(seqName);
+    }
     
     @Override
     public List<T> selectAll() {
