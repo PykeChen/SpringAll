@@ -20,10 +20,10 @@
         </commentGenerator>
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="jdbc:oracle:thin:@localhost:1521:ORCL"
-                        userId="scott"
-                        password="6742530">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/springtest"
+                        userId="root"
+                        password="admin123">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -51,7 +51,7 @@
 
         <!--生成对应表及类名去掉Mybatis Generator生成的一堆 example-->
         <table tableName="T_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="oralce" identity="true"/>
+            <generatedKey column="id" sqlStatement="mysql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

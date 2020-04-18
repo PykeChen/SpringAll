@@ -1,23 +1,24 @@
 package com.springboot;
 
-import java.util.Date;
-import java.util.List;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.springboot.bean.User;
+import com.springboot.service.UserService;
 
+import java.util.Date;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.springboot.bean.User;
-import com.springboot.service.UserService;
+import java.util.List;
 
-import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.spring.annotation.MapperScan;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
+@MapperScan("com.springboot.mapper")
 public class ApplicationTest {
 
 	@Autowired
@@ -26,14 +27,14 @@ public class ApplicationTest {
 	@Test
 	public void test() throws Exception {
 
-		// User user = new User();
-		// user.setId(userService.getSequence("seq_user"));
-		// user.setUsername("scott");
-		// user.setPasswd("ac089b11709f9b9e9980e7c497268dfa");
-		// user.setCreateTime(new Date());
-		// user.setStatus("0");
-		// this.userService.save(user);
-
+//		for (int i = 0; i < 8; i++) {
+//			User user = new User();
+//			user.setUsername("scott_" + i);
+//			user.setPasswd("ac089b11709f9b9e9980e7c497268dfa");
+//			user.setCreateTime(new Date());
+//			user.setStatus("0");
+//			this.userService.save(user);
+//		}
 		
 //		Example example = new Example(User.class);
 //		example.createCriteria().andCondition("username like '%i%'");
@@ -56,7 +57,7 @@ public class ApplicationTest {
 //		user.setId(4l);
 //		this.userService.delete(user);
 
-		PageHelper.startPage(2, 2);
+		PageHelper.startPage(4, 2);
 		List<User> list = userService.selectAll();
 		PageInfo<User> pageInfo = new PageInfo<User>(list);
 		List<User> result = pageInfo.getList();
