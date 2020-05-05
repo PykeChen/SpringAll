@@ -22,7 +22,6 @@ public class WebConfigurer implements WebMvcConfigurer {
     //             .allowedMethods("GET");
     // }
 
-    @Bean
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();

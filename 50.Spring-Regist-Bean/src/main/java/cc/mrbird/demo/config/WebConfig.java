@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
         //         @Filter(type = FilterType.ANNOTATION, classes = Service.class)
         // }, useDefaultFilters = false
 // )
+//@ComponentScan(value ="cc.mrbird.demo.controller")
 @Import({Hello.class, MyImportSelector.class, MyImportBeanDefinitionRegistrar.class})
 public class WebConfig {
 

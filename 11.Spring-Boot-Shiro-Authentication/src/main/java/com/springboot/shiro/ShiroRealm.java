@@ -20,6 +20,8 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Autowired
 	private UserMapper userMapper;
 
+	//UserService userService //should be
+
 	/**
 	 * 获取用户角色和权限
 	 */

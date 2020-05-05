@@ -18,7 +18,7 @@ public class TestController {
 
     @RequestMapping("hello")
     @ResponseBody
-    // @CrossOrigin(value = "*")
+    @CrossOrigin(value = "*")
     public String hello() {
         return "hello";
     }

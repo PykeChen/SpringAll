@@ -1,6 +1,8 @@
 package cc.mrbird;
 
 import cc.mrbird.demo.config.WebConfig;
+import cc.mrbird.demo.dao.UserMapper;
+import cc.mrbird.demo.domain.User;
 import cc.mrbird.demo.service.CalculateService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
@@ -25,16 +27,19 @@ public class DemoApplication {
         ApplicationContext context = new AnnotationConfigApplicationContext(WebConfig.class);
         System.out.println("容器创建完毕");
 
-        // User user = context.getBean(User.class);
-        // System.out.println(user);
+         User user = context.getBean(User.class);
+         System.out.println(user);
 
         // 查看 User 这个类在 Spring 容器中叫啥玩意
-        // String[] beanNames = context.getBeanNamesForType(User.class);
-        // Arrays.stream(beanNames).forEach(System.out::println);
+         String[] beanNamesUser = context.getBeanNamesForType(User.class);
+         Arrays.stream(beanNamesUser).forEach(System.out::println);
 
         // 查看基于注解的 IOC容器中所有组件名称
         String[] beanNames = context.getBeanDefinitionNames();
         Arrays.stream(beanNames).forEach(System.out::println);
+
+        UserMapper userMapper = context1.getBean(UserMapper.class);
+        System.out.println("userMapper = " + userMapper);
 
         // 组件的作用域
         // Object user1 = context.getBean("user");
@@ -55,7 +60,6 @@ public class DemoApplication {
 
         Object cherryFactoryBean = context.getBean("&cherryFactoryBean");
         System.out.println(cherryFactoryBean.getClass());
-
     }
 }
 
