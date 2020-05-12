@@ -2,9 +2,12 @@ security:
   basic:
     enabled: true
 
+
 server:
-  session:
-    timeout: 3600
+  servlet:
+    session:
+      timeout: 3600
+  port: 9090
 
 spring:
   session:

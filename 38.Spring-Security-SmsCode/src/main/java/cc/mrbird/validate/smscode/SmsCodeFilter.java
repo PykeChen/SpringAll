@@ -43,7 +43,7 @@ public class SmsCodeFilter extends OncePerRequestFilter {
 
     private void validateCode(ServletWebRequest servletWebRequest) throws ServletRequestBindingException {
         String smsCodeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "smsCode");
-        String mobileInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "smsCode");
+        String mobileInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "mobile");
 
         SmsCode codeInSession = (SmsCode) sessionStrategy.getAttribute(servletWebRequest, ValidateController.SESSION_KEY_SMS_CODE + mobileInRequest);
 
@@ -60,7 +60,8 @@ public class SmsCodeFilter extends OncePerRequestFilter {
         if (!StringUtils.equalsIgnoreCase(codeInSession.getCode(), smsCodeInRequest)) {
             throw new ValidateCodeException("验证码不正确！");
         }
-        sessionStrategy.removeAttribute(servletWebRequest, ValidateController.SESSION_KEY_IMAGE_CODE);
+        sessionStrategy.removeAttribute(servletWebRequest, ValidateController.SESSION_KEY_SMS_CODE + mobileInRequest);
 
     }
+
 }

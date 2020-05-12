@@ -95,13 +95,13 @@ public class ShiroConfig {
 		return cookieRememberMeManager;
 	}
 	
-	@Bean
-    @DependsOn({"lifecycleBeanPostProcessor"})
-    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-        advisorAutoProxyCreator.setProxyTargetClass(true);
-        return advisorAutoProxyCreator;
-    }
+//	@Bean
+//    @DependsOn({"lifecycleBeanPostProcessor"})
+//    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
+//        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+//        advisorAutoProxyCreator.setProxyTargetClass(true);
+//        return advisorAutoProxyCreator;
+//    }
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {

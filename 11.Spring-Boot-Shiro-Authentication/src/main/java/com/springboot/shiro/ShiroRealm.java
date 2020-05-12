@@ -1,5 +1,8 @@
 package com.springboot.shiro;
 
+import com.springboot.dao.UserMapper;
+import com.springboot.pojo.User;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -11,9 +14,6 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.springboot.dao.UserMapper;
-import com.springboot.pojo.User;
 
 public class ShiroRealm extends AuthorizingRealm {
 

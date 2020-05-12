@@ -3,6 +3,8 @@ package cc.mrbird.validate.code;
 import cc.mrbird.web.controller.ValidateController;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -14,6 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -26,8 +29,25 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
     private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+        if (StringUtils.equalsAnyIgnoreCase("/login.html", httpServletRequest.getRequestURI())) {
+            //请求登录的html页面，如果登录则自动条跳转到首页
+            Cookie[] cookies =  httpServletRequest.getCookies();
+            boolean find = false;
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("remember-me")) {
+                    logger.info("I find it cookie......sendRedict...");
+                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/index");
+                    find = true;
+                }
+            }
+            if (find) {
+                return;
+            }
+        }
         if (StringUtils.equalsIgnoreCase("/login", httpServletRequest.getRequestURI())
                 && StringUtils.equalsIgnoreCase(httpServletRequest.getMethod(), "post")) {
             try {

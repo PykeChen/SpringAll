@@ -61,7 +61,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionManagement() // 添加 Session管理器
                     .invalidSessionUrl("/session/invalid") // Session失效后跳转到这个链接
                     .maximumSessions(1)
-                    .maxSessionsPreventsLogin(true)
+//                    .maxSessionsPreventsLogin(true)
                     .expiredSessionStrategy(sessionExpiredStrategy)
                 .and()
                 .and()
