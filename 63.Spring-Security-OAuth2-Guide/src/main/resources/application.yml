@@ -3,4 +3,4 @@ security:
     client:
       client-id: test
       client-secret: test1234
-      registered-redirect-uri: http://mrbird.cc
+      registered-redirect-uri: http://pychen007.com
